@@ -15,13 +15,12 @@ module ::AliexpressAffiliatePlugin
 end
 
 require_relative "lib/aliexpress_affiliate_plugin/engine"
-require_relative "lib/aliexpress_affiliate_plugin/affiliate_link_converter"
 
 after_initialize do
-  # Hook into post processing to convert AliExpress URLs to affiliate links
+  require_relative "lib/aliexpress_affiliate_plugin/affiliate_link_converter"
+
   on(:post_process_cooked) do |doc, post|
     next unless SiteSetting.aliexpress_affiliate_enabled
-
     converter = AliexpressAffiliatePlugin::AffiliateLinkConverter.new
     converter.process_document(doc)
   end
