@@ -1,21 +1,28 @@
 # frozen_string_literal: true
 
-# name: discourse-plugin-name
-# about: TODO
+# name: discourse-aliexpress-affiliate
+# about: Automatically converts AliExpress URLs into affiliate links using the AliExpress Affiliate API
 # meta_topic_id: TODO
-# version: 0.0.1
-# authors: Discourse
+# version: 1.0.0
+# authors: Your Name
 # url: TODO
 # required_version: 2.7.0
 
-enabled_site_setting :plugin_name_enabled
+enabled_site_setting :aliexpress_affiliate_enabled
 
-module ::MyPluginModule
-  PLUGIN_NAME = "discourse-plugin-name"
+module ::AliexpressAffiliatePlugin
+  PLUGIN_NAME = "discourse-aliexpress-affiliate"
 end
 
-require_relative "lib/my_plugin_module/engine"
+require_relative "lib/aliexpress_affiliate_plugin/engine"
+require_relative "lib/aliexpress_affiliate_plugin/affiliate_link_converter"
 
 after_initialize do
-  # Code which should run after Rails has finished booting
+  # Hook into post processing to convert AliExpress URLs to affiliate links
+  on(:post_process_cooked) do |doc, post|
+    next unless SiteSetting.aliexpress_affiliate_enabled
+
+    converter = AliexpressAffiliatePlugin::AffiliateLinkConverter.new
+    converter.process_document(doc)
+  end
 end
