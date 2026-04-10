@@ -1,16 +1,20 @@
 aliexpress_affiliate_enabled:
   default: true
-  client: true
+  client: false
+  type: bool
 
 aliexpress_affiliate_app_key:
-  default: ""
+  default: "529034"
   client: false
+  type: string
 
 aliexpress_affiliate_app_secret:
   default: ""
   client: false
+  type: string
   secret: true
-
+  
 aliexpress_affiliate_tracking_id:
   default: "default"
   client: false
+  type: string
