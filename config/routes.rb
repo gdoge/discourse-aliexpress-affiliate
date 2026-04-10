@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
-MyPluginModule::Engine.routes.draw do
-  get "/examples" => "examples#index"
-  # define routes here
+AliexpressAffiliatePlugin::Engine.routes.draw do
+  post "/convert" => "affiliate#convert"
 end
 
-Discourse::Application.routes.draw { mount ::MyPluginModule::Engine, at: "my-plugin" }
+Discourse::Application.routes.draw do
+  mount ::AliexpressAffiliatePlugin::Engine, at: "aliexpress-affiliate"
+end
