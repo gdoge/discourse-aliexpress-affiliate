@@ -1,4 +1,16 @@
-TODO_plugin_name:
-  plugin_name_enabled:
-    default: false
-    client: true
+aliexpress_affiliate_enabled:
+  default: true
+  client: true
+
+aliexpress_affiliate_app_key:
+  default: ""
+  client: false
+
+aliexpress_affiliate_app_secret:
+  default: ""
+  client: false
+  secret: true
+
+aliexpress_affiliate_tracking_id:
+  default: "default"
+  client: false
