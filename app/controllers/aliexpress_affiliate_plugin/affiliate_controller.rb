@@ -3,6 +3,7 @@
 module AliexpressAffiliatePlugin
   class AffiliateController < ::ApplicationController
     requires_plugin "discourse-aliexpress-affiliate"
+    skip_before_action :verify_authenticity_token
     before_action :ensure_plugin_enabled
 
     def convert
